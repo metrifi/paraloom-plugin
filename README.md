@@ -13,6 +13,29 @@ The repo is the plugin **marketplace**; the plugin itself lives in [`plugins/par
   [`plugins/paraloom/reference/EXPERIMENT_WORKFLOW.md`](plugins/paraloom/reference/EXPERIMENT_WORKFLOW.md)
 - **Roadmap / maintainer notes:** [`docs/ROADMAP.md`](docs/ROADMAP.md)
 
+## Install
+
+Full step-by-step for every surface, plus prerequisites and troubleshooting, is in
+[`INSTALL.md`](INSTALL.md). The short version for the recommended path — Claude Desktop **code mode**
+(the Claude Code panel in the desktop app) or the Claude Code **CLI**:
+
+1. **One-time setup** in a terminal: `pip3 install markdown-it-py pyspellchecker requests beautifulsoup4`,
+   and put your DataForSEO login in `~/.dataforseo.env` (ask Ryan for the shared creds).
+2. **Add the marketplace and install the plugin** (inside a Claude Code session):
+   ```
+   /plugin marketplace add metrifi/paraloom-plugin
+   /plugin install paraloom@paraloom-tools
+   /reload-plugins
+   ```
+3. **Connect Paraloom:** the first time a Paraloom tool runs, sign in to `app.paraloom.ai` when
+   prompted — that authorizes the bundled MCP. Then run `/paraloom:start` from your customer folder.
+
+> **Home/chat mode** (regular Claude Desktop / claude.ai chat): add the plugin via the app's
+> **+ → Plugins** menu instead. Only the review skills work there — see the capability matrix below.
+>
+> Requires a paid Claude plan and a Paraloom login. The `metrifi/paraloom-plugin` marketplace goes
+> live once the repo is pushed (see below).
+
 ## How to use it (just talk to it)
 
 You don't memorize commands. Say what you want in plain language and the `start` router maps it to
