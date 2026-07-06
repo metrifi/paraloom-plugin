@@ -10,11 +10,17 @@ distribution call.**
 
 ## M1 — Publish + team rollout (in progress)
 - Decision: **public** repo at **`metrifi/paraloom-plugin`**. Placeholder replaced everywhere.
-- Repo pushed; install verified from the GitHub marketplace on this machine.
-- **Remaining:** verify the bundled MCP completes OAuth for a **teammate who does not already have
-  the Paraloom connector** — that's the real target user, and the case this session couldn't fully
-  exercise (this machine already had the connector authorized). Have one teammate install on Claude
-  Desktop (code mode) and confirm `mcp__paraloom__list-teams` returns their teams after sign-in.
+- Install verified from a **local** marketplace on this machine (all 13 skills load; MCP declared).
+- **Push still pending:** the auto-mode safety classifier blocked pushing the (trade-secret) repo to
+  a public GitHub remote. Ryan runs the `gh repo create … --public --push` himself. Then re-verify
+  `/plugin marketplace add metrifi/paraloom-plugin` + `/plugin install paraloom@paraloom-tools`.
+- Bundled-MCP OAuth mechanism **verified independently of the connector** (2026-07-06):
+  `claude mcp list` shows the plugin's server as a distinct `plugin:paraloom:paraloom … Needs
+  authentication`, and `app.paraloom.ai` serves full MCP OAuth discovery
+  (`/.well-known/oauth-protected-resource` + `oauth-authorization-server` → 200; `/mcp/paraloom`
+  returns `WWW-Authenticate: Bearer`). So a teammate without the connector gets standard OAuth.
+- **Only the interactive click-through remains:** in a session, `/mcp` → authenticate `paraloom` →
+  `mcp__paraloom__list-teams` returns teams. (Can't be done headlessly; OAuth needs interactivity.)
 - Optional: add the repo to `.claude/settings.json` `extraKnownMarketplaces` in the customer
   working folders so the team is auto-prompted to install.
 
