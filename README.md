@@ -15,26 +15,26 @@ The repo is the plugin **marketplace**; the plugin itself lives in [`plugins/par
 
 ## Install
 
-Full step-by-step for every surface, plus prerequisites and troubleshooting, is in
-[`INSTALL.md`](INSTALL.md). The short version for the recommended path — Claude Desktop **code mode**
-(the Claude Code panel in the desktop app) or the Claude Code **CLI**:
+**Easiest (no commands, non-technical friendly):** in **Claude Desktop → code mode**, paste the
+prompt in [`install-prompt.md`](install-prompt.md) and approve the steps. Claude installs the
+plugin, installs the Python bits, saves your DataForSEO credentials, and checks everything — then
+you run `/reload-plugins` and `/paraloom:start`. Ryan can hand teammates a version of that prompt
+with the credentials already filled in, so they truly do nothing but paste and approve.
 
-1. **One-time setup** in a terminal: `pip3 install markdown-it-py pyspellchecker requests beautifulsoup4`,
-   and put your DataForSEO login in `~/.dataforseo.env` (ask Ryan for the shared creds).
-2. **Add the marketplace and install the plugin** (inside a Claude Code session):
-   ```
-   /plugin marketplace add metrifi/paraloom-plugin
-   /plugin install paraloom@paraloom-tools
-   /reload-plugins
-   ```
-3. **Connect Paraloom:** the first time a Paraloom tool runs, sign in to `app.paraloom.ai` when
-   prompted — that authorizes the bundled MCP. Then run `/paraloom:start` from your customer folder.
+**Prefer to do it yourself?** Inside a Claude Code session (Desktop code mode or the CLI):
+```
+/plugin marketplace add metrifi/paraloom-plugin
+/plugin install paraloom@paraloom-tools
+/reload-plugins
+```
+plus a one-time `pip3 install --user markdown-it-py pyspellchecker requests beautifulsoup4` and a
+`~/.dataforseo.env` with your DataForSEO login. Sign into `app.paraloom.ai` on first use.
 
-> **Home/chat mode** (regular Claude Desktop / claude.ai chat): add the plugin via the app's
-> **+ → Plugins** menu instead. Only the review skills work there — see the capability matrix below.
->
+Full step-by-step for every surface (including chat mode via **+ → Plugins**), prerequisites, and
+troubleshooting: [`INSTALL.md`](INSTALL.md).
+
 > Requires a paid Claude plan and a Paraloom login. The `metrifi/paraloom-plugin` marketplace goes
-> live once the repo is pushed (see below).
+> live once the repo is pushed (see the note near the bottom).
 
 ## How to use it (just talk to it)
 

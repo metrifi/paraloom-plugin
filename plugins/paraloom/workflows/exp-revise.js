@@ -29,7 +29,7 @@ const dir = `experiments/${slug}`
 const teamId = a.teamId
 const mode = a.mode || 'mcp'
 if (!['mcp', 'local'].includes(mode)) throw new Error(`exp-revise: mode must be 'mcp' or 'local'`)
-const paraloomPath = a.paraloomPath || '/Users/ryanharmon/Herd/paraloom'
+const paraloomPath = a.paraloomPath || ''
 const mcp = a.mcpPrefix || 'mcp__claude_ai_Paraloom__'
 
 const ACTIVITY_SCHEMA = {
@@ -203,7 +203,7 @@ const push = await agent(
 1. Run: python3 tools/build-deliverable-manifest.py --experiment-dir ${dir}
    (status auto-derives: open blocking items -> needs-input, else ready). If validation fails, report it verbatim and stop.
 2. ${mode === 'local'
-    ? `Push the revision locally: from ${paraloomPath}, php artisan deliverables:ingest /Users/ryanharmon/Documents/Code/paraloom-agent/${dir}/deliverable.json --team=${teamId} (idempotent on slug = revision push; check DELIVERABLES-API.md if the command differs).`
+    ? `Push the revision locally: from ${paraloomPath}, php artisan deliverables:ingest ${dir}/deliverable.json --team=${teamId} (idempotent on slug = revision push; check DELIVERABLES-API.md if the command differs).`
     : `Push the revision BY REFERENCE (the dossier is too large to echo inline through an MCP argument without truncating it):
    a. Stage over HTTP. Bash: source .paraloom.env 2>/dev/null || source ~/.paraloom.env 2>/dev/null; curl -sf -X POST "${a.apiBase || 'https://app.paraloom.ai'}/api/deliverable-manifests" -H "Authorization: Bearer $PARALOOM_API_TOKEN" -H "Content-Type: application/json" --data-binary @${dir}/deliverable.json ; parse {ref, dossier_count}. SANITY: dossier_count MUST equal ${dir}/deliverable.json's \`dossier\` length, else STOP. On HTTP 404/401 STOP and report halted with reason "by-reference staging endpoint unavailable (404 = deploy the deliverable-manifest-by-reference branch; 401 = set PARALOOM_API_TOKEN in ~/.paraloom.env), or run mode:'local'".
    b. ToolSearch "select:${mcp}push-deliverable-revision" and push-deliverable-revision(team_id ${teamId}, deliverable_id from ${dir}/experiment.md, manifest_ref = <ref>, changelog = ${JSON.stringify(changelog)}). Pass manifest_ref, NOT manifest.`}

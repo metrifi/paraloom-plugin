@@ -31,8 +31,16 @@ distribution call.**
   whether skills must invoke by `scriptPath`. Wire the exp-* skills accordingly.
 
 ## M3 — Dependency ergonomics
-- Ship a one-line `setup` skill or `bin/` script that runs the `pip3 install` and checks for
-  `~/.dataforseo.env` / Playwright, so non-technical teammates don't touch a terminal.
+- Done: `install-prompt.md` — a paste-once prompt that has Claude (code mode) install the plugin,
+  install the Python deps, write `~/.dataforseo.env`, and check Playwright, so non-technical
+  teammates do nothing but paste + approve. Ryan bakes the DataForSEO creds into the copy he sends.
+- Next: fold the same active-setup into a `/paraloom:setup` skill so it can be re-run/verified after
+  install (currently `project-setup` only *checks* the stack; it doesn't install deps or write creds).
+  Note the chicken-and-egg: a bundled setup skill isn't loaded until after install + `/reload-plugins`,
+  so the paste-once prompt (which doesn't depend on the plugin being loaded) stays the primary path.
+- Open friction to attack: Python itself. On a Mac with no Python, the prompt installs it via
+  Homebrew, but that can need an approval or a Command Line Tools GUI install. Consider whether the
+  core review skills can lean less on Python.
 - Decide whether to bundle Playwright guidance or document connecting it as a separate MCP.
 
 ## M4 — Quality + evals

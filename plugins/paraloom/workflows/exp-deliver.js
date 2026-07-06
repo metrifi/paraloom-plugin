@@ -16,7 +16,7 @@ export const meta = {
 //   experimentId?                 (Paraloom experiment id to attach)
 //   mode?                         ('mcp' (default) = Paraloom MCP tools; 'local' = artisan ingest into the
 //                                  local paraloom checkout — byte-exact, preserves the dossier)
-//   paraloomPath?                 (local mode; default /Users/ryanharmon/Herd/paraloom)
+//   paraloomPath?                 (local mode; default )
 //   apiBase?                      (public-API base for verification; default https://app.paraloom.ai (prod);
 //                                  pass http://127.0.0.1:8002 when targeting the local checkout)
 //   status? scheduledFor? optOutBy?  (forwarded to the manifest builder)
@@ -34,7 +34,7 @@ const dir = `experiments/${slug}`
 const teamId = a.teamId
 const mode = a.mode || 'mcp'
 if (!['mcp', 'local'].includes(mode)) throw new Error(`exp-deliver: mode must be 'mcp' or 'local' (got '${a.mode}')`)
-const paraloomPath = a.paraloomPath || '/Users/ryanharmon/Herd/paraloom'
+const paraloomPath = a.paraloomPath || ''
 const mcp = a.mcpPrefix || 'mcp__claude_ai_Paraloom__'
 const apiBase = a.apiBase || 'https://app.paraloom.ai'
 const send = !!a.send
@@ -100,10 +100,10 @@ phase('Push')
 const push = await agent(
   mode === 'local'
     ? `Push the manifest into the LOCAL Paraloom instance (the deliverable MCP tools are not yet deployed to production).
-Run (from ${paraloomPath}): php artisan deliverables:ingest ${'$(pwd)'.length ? '' : ''}/Users/ryanharmon/Documents/Code/paraloom-agent/${dir}/deliverable.json --team=${teamId}${a.experimentId ? ` --experiment=${a.experimentId}` : ''}
+Run (from ${paraloomPath}): php artisan deliverables:ingest ${'$(pwd)'.length ? '' : ''}${dir}/deliverable.json --team=${teamId}${a.experimentId ? ` --experiment=${a.experimentId}` : ''}
 (Use an absolute path to the manifest. If the command name differs slightly, check ${paraloomPath}/DELIVERABLES-API.md and php artisan list | grep -i deliver, and use what exists.)
 Parse the printed {deliverable_id, token, client_url}. Re-running is a revision push (idempotent on slug) — that is expected.
-Then record deliverable id + token + client URL + revision in /Users/ryanharmon/Documents/Code/paraloom-agent/${dir}/experiment.md and append a Deliverable entry to workflow-log.md (no human sign-offs). Return the structured object.`
+Then record deliverable id + token + client URL + revision in ${dir}/experiment.md and append a Deliverable entry to workflow-log.md (no human sign-offs). Return the structured object.`
     : `Push the manifest to Paraloom BY REFERENCE via MCP. The manifest's \`dossier\` array is large (~90KB of markdown across ~9 docs) and CANNOT be echoed inline through an MCP tool argument without silently truncating it. Stage it over HTTP first (no model in the byte path), then pass only the small ref.
 1. Stage the manifest. Run in Bash:
      source .paraloom.env 2>/dev/null || source ~/.paraloom.env 2>/dev/null; curl -sf -X POST "${apiBase}/api/deliverable-manifests" -H "Authorization: Bearer $PARALOOM_API_TOKEN" -H "Content-Type: application/json" --data-binary @${dir}/deliverable.json
@@ -123,7 +123,7 @@ let verify = { verified: false, issues: ['verification skipped: no apiBase provi
 if (apiBase) {
   verify = await agent(
     `Verify the deliverable materialized correctly. GET ${apiBase}/api/public/deliverables/${push.token} (curl -s).
-Assert against /Users/ryanharmon/Documents/Code/paraloom-agent/${dir}/deliverable.json:
+Assert against ${dir}/deliverable.json:
 - HTTP 200; deliverable.status matches the manifest status
 - actionItems count matches; every manifest action item's sourceId/id appears
 - no thread/item that has an anchor in the manifest is flagged orphaned
@@ -156,7 +156,7 @@ if (mode === 'mcp' && apiBase
   log(`Dossier short on MCP push (${verify.servedDossierCount}/${verify.manifestDossierCount}) — re-ingesting byte-exact via artisan`)
   const reconcile = await agent(
     `The MCP push landed but stored only ${verify.servedDossierCount} of ${verify.manifestDossierCount} dossier docs — the inline manifest dropped content. Re-ingest the byte-exact manifest from disk into the SAME local instance (the file path preserves the full dossier; the LLM-inlined manifest does not).
-Run (from ${paraloomPath}): php artisan deliverables:ingest /Users/ryanharmon/Documents/Code/paraloom-agent/${dir}/deliverable.json --team=${teamId}
+Run (from ${paraloomPath}): php artisan deliverables:ingest ${dir}/deliverable.json --team=${teamId}
 (ingest is slug-idempotent — it updates the same deliverable_id + token, no new record. Omit --experiment: the local DB may not carry the prod experiment id, and it is cosmetic locally.)
 Parse the printed {deliverable_id, token, client_url} and confirm the token matches ${push.token}. Then GET ${apiBase}/api/public/deliverables/${push.token} (curl -s) and report servedDossierCount = the dossier entries now served. Return the structured object.`,
     { label: 'reconcile:artisan', phase: 'Reconcile', schema: RECONCILE_SCHEMA }

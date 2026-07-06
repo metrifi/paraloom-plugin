@@ -104,8 +104,8 @@ review-package.html
 
 ## When to create a new customer project vs new experiment
 
-- **New customer project:** new credit union. New CLAUDE.md, new MCP team_id, new credentials. Copy the `_paraloom-agent/` kit as starting point.
-- **New experiment in existing project:** same customer, new topic. New `experiments/<slug>/` folder. Reuse the project's CLAUDE.md, docs, tools.
+- **New customer project:** new credit union. With this plugin installed, there is no kit to copy — just make (or open) an empty folder for that customer and start there; the plugin's skills, tools, and reference docs are available everywhere. Each customer gets their own folder so their `experiments/<slug>/` work stays separate.
+- **New experiment in existing project:** same customer, new topic. New `experiments/<slug>/` folder inside that customer's folder.
 
 ## Per-experiment kickoff checklist
 
