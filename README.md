@@ -13,6 +13,43 @@ The repo is the plugin **marketplace**; the plugin itself lives in [`plugins/par
   [`plugins/paraloom/reference/EXPERIMENT_WORKFLOW.md`](plugins/paraloom/reference/EXPERIMENT_WORKFLOW.md)
 - **Roadmap / maintainer notes:** [`docs/ROADMAP.md`](docs/ROADMAP.md)
 
+## How to use it (just talk to it)
+
+You don't memorize commands. Say what you want in plain language and the `start` router maps it to
+the right step; every skill is also directly invocable as `/paraloom:<name>`. Run from the folder
+you want this customer's work saved in — experiments land in `experiments/<slug>/` there.
+
+**Start / run an experiment**
+- *"Set up this project for `<credit union>`"* — checks the stack and asks the three scoping questions.
+- *"Run an experiment for `<team>` on `<topic>`"* — kicks off the whole suite: research demand →
+  design → draft → the four-check review battery → package the deliverable. It runs start to finish
+  and only stops at the FI sign-off and before any client email.
+- *"Just research demand for `<topic>` first, don't write anything yet"* — a dry run: keyword-grounded
+  prompt triage with no writes to Paraloom.
+
+**Check where things stand**
+- *"Where are we with `<slug>`?"* · *"What needs me?"* · *"Status across the board"* — current phase,
+  the Paraloom IDs, and anything waiting on a human.
+
+**Deliverables**
+- *"List the deliverables for `<team>`"* · *"What's live for `<team>`?"* — pulls them from Paraloom.
+- *"Give me the client link for `<slug>`"* — the `/d/<token>` URL.
+- *"Ship the `<slug>` deliverable to the client"* — builds and pushes it; the notification email only
+  sends on your explicit OK.
+
+**Revisions (the client round-trip)**
+- *"Did the client respond on `<slug>`?"* — checks the deliverable for new answers, threads, checklist
+  confirmations, and opt-outs.
+- *"The client answered — apply it and push a revision"* — applies their input through the methodology
+  (not as raw edits), re-runs the review battery if the article changed, and pushes a new revision.
+  No-ops cleanly when there's nothing new.
+- *"Re-verify the items the client confirmed"* — a confirmation isn't a verification; this re-checks
+  them against the live site / source before trusting them.
+
+Prefer explicit commands? `/paraloom:exp-research`, `/paraloom:exp-build`, `/paraloom:exp-review`,
+`/paraloom:exp-deliver`, `/paraloom:exp-revise`, `/paraloom:exp-status`, `/paraloom:project-setup`,
+and `/paraloom:start`.
+
 ## What's in the plugin
 
 | Component | What it is |
