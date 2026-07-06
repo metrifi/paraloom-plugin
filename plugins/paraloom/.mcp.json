@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "paraloom": {
+      "type": "http",
+      "url": "https://app.paraloom.ai/mcp/paraloom"
+    }
+  }
+}

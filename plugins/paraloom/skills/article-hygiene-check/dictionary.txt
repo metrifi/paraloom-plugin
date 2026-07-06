@@ -1,0 +1,124 @@
+# Custom dictionary for article-hygiene-check
+# One word per line. Lines starting with # are comments.
+# Words are matched case-insensitively.
+# Add credit-union, brand, and product names here so the spell checker
+# stops flagging them.
+
+# --- Credit union names / brands ---
+Heartland
+Heartlandcu
+NCUA
+NCUSIF
+CUNA
+TruStage
+TruStage's
+
+# --- Banking & financial acronyms ---
+APY
+APR
+APYE
+HELOC
+HELOCs
+ATM
+ATMs
+ACH
+PIN
+EMV
+FICO
+ARM
+ARMs
+PMI
+LLPA
+LTV
+DTI
+ETF
+ETFs
+IRA
+IRAs
+SEP
+SIMPLE
+401k
+403b
+529
+HSA
+HSAs
+FSA
+FSAs
+CD
+CDs
+TISA
+ECOA
+RESPA
+HMDA
+SCRA
+EFTA
+FACTA
+
+# --- Regulatory / agency names ---
+CFPB
+FDIC
+FFIEC
+FinCEN
+OFAC
+OCC
+
+# --- Common credit-union product / program terms ---
+overdraft
+overdrafts
+cosigner
+cosigners
+cosign
+cosigned
+underwriting
+underwrite
+underwriter
+underwriters
+prequalified
+prequalification
+preapproval
+preapproved
+escrow
+escrowed
+refinance
+refinanced
+refinancing
+amortization
+amortize
+amortized
+amortizing
+
+# --- Online / digital banking vocabulary ---
+online
+onboarding
+multifactor
+biometric
+fingerprint
+faceprint
+passcode
+passkey
+passkeys
+phishing
+smishing
+vishing
+
+# --- Common content-marketing words that pyspellchecker sometimes misses ---
+homebuyer
+homebuyers
+homeownership
+homeowner
+homeowners
+ecommerce
+checkout
+upskill
+upskilling
+podcast
+podcasts
+livestream
+livestreams
+livestreamed
+inboxes
+chatbot
+chatbots
+
+# --- Common credit-union member-facing names ---
+Heartlanders

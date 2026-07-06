@@ -1,0 +1,18 @@
+# Secrets — never commit
+*.env
+.dataforseo.env
+.paraloom.env
+
+# User experiment data (this repo ships the plugin, not customer work)
+experiments/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# macOS / editors
+.DS_Store
+.idea/
+.vscode/

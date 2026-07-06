@@ -1,0 +1,9 @@
+# Python dependencies for the project-local tools and the vendored skill scripts.
+# Install once per machine:  pip3 install -r tools/requirements.txt
+#
+# package            used by (import name)                         where
+markdown-it-py     # markdown_it  — markdown → HTML render          tools/focused-hygiene-check.py, article-hygiene-check skill
+pyspellchecker     # spellchecker — lightweight spell check         tools/focused-hygiene-check.py, article-hygiene-check skill
+requests           # requests     — DataForSEO HTTP calls           keyword-research skill (scripts/_dfs.py)
+beautifulsoup4     # bs4          — HTML parsing of SERP/AI-Mode     keyword-research skill (scripts/ai_mode_serp.py)
+weasyprint         # weasyprint   — HTML → PDF                       tools/build-compliance-pdf.py (also needs Homebrew glib/pango/cairo on macOS; the script sets DYLD_FALLBACK_LIBRARY_PATH itself)

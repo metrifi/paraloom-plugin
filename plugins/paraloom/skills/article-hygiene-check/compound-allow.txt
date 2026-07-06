@@ -1,0 +1,46 @@
+# Compound terms exempt from M2 hyphen-overuse checks.
+# One compound per line, lowercase. Lines starting with # are comments.
+# Compound creep (≥2 internal hyphens in a single token) is also suppressed
+# if the *base* compound matches an entry here, e.g., "first-time-homebuyer"
+# starts with "first-time" so the embedded hyphen of "first-time" doesn't count
+# toward the creep tally.
+
+first-time
+long-term
+short-term
+mid-term
+co-op
+co-ops
+not-for-profit
+non-profit
+e-mail
+e-commerce
+on-site
+off-site
+in-person
+in-house
+state-chartered
+federally-chartered
+member-owned
+full-time
+part-time
+real-time
+twenty-four-seven
+end-to-end
+year-over-year
+month-over-month
+fee-free
+low-cost
+peer-to-peer
+side-by-side
+back-to-back
+face-to-face
+out-of-pocket
+out-of-network
+in-network
+day-to-day
+no-fee
+zero-fee
+multi-factor
+two-factor
+single-sign-on
