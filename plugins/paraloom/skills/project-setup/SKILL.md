@@ -26,9 +26,11 @@ plus the one detail that matters):
 
 1. **Paraloom MCP connected.** Probe with `ToolSearch` (`select:list-teams`), load the tool, call
    `mcp__paraloom__list-teams`. Report which teams are visible. If only one team is visible, that's
-   the customer for this project — note their `team_id` and team name. First use may prompt an OAuth
-   sign-in to `app.paraloom.ai`; if the tools don't resolve, the plugin's MCP hasn't been
-   authorized yet (see the plugin README's install steps).
+   the customer for this project — note their `team_id` and team name. The Paraloom connector
+   authorizes separately from the plugin install: in **Claude Desktop → Settings → Connectors**
+   (sign in once), or via `/mcp` in the Claude Code CLI. **Attempt the call rather than assuming
+   it's blocked** — only if `list-teams` errors with an auth failure, point the user to authorize
+   the Paraloom connector there (a one-time UI step), then retry. Don't claim this session can't do it.
 
 2. **Plugin skills loaded.** Confirm the paraloom plugin's skills resolve — the experiment skills
    (`exp-research`, `exp-build`, `exp-review`, `exp-deliver`, `exp-revise`, `exp-status`) and the

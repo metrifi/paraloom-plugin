@@ -106,8 +106,12 @@ that's a genuine blocker, not a routine touchpoint.
 - **Experiments**: created in the current working directory under `experiments/<slug>/`. Pick a
   working folder for the customer before starting (see `${CLAUDE_PLUGIN_ROOT}/reference/conventions.md`).
 - **Paraloom MCP**: bundled with this plugin (tools named `mcp__paraloom__*`; load schemas with
-  `ToolSearch` before calling). It targets Paraloom **production** (`app.paraloom.ai`). First use
-  prompts an OAuth sign-in.
+  `ToolSearch` before calling), targeting production (`app.paraloom.ai`). It authorizes as a
+  **connector**, separately from installing the plugin: in **Claude Desktop → Settings →
+  Connectors**, sign in to Paraloom once; in the **Claude Code CLI**, run `/mcp` and authorize it.
+  **Always attempt the Paraloom call — never preemptively refuse assuming it's unauthorized.** Only
+  if a call actually errors with an auth failure, tell the user to authorize the Paraloom connector
+  as above; that's a one-time UI action, not something that blocks this session.
 - **Tools**: `${CLAUDE_PLUGIN_ROOT}/tools/` (deliverable manifest, focused hygiene check,
   compliance PDF). Always invoke them by that absolute path.
 - **Reference**: `${CLAUDE_PLUGIN_ROOT}/reference/` (SOP, methodology, conventions, deliverables

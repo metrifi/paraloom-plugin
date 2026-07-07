@@ -16,3 +16,6 @@ venv/
 .DS_Store
 .idea/
 .vscode/
+
+# build artifacts (upload zips)
+dist/

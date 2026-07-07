@@ -1,63 +1,73 @@
 # Installing the Paraloom plugin
 
-This plugin replaces cloning the `paraloom-agent` repo. **Most people should use the easy way
-below** — you paste one prompt and Claude does the whole setup for you.
+> The marketplace is **`paraloom-tools`**, the plugin is **`paraloom`**, and it lives in the public
+> GitHub repo **`metrifi/paraloom-plugin`**.
 
-> The marketplace is named **`paraloom-tools`**, the plugin is **`paraloom`**, and it lives in the
-> public GitHub repo **`metrifi/paraloom-plugin`**.
+## Read this first: installing is two separate steps
 
----
+This trips everyone up, so it's worth stating plainly. Getting the plugin working is **two
+things**, done in two different places:
 
-## The easy way — paste one prompt (recommended, non-technical friendly)
+1. **Install the plugin** (its skills) — via the Plugins UI or a command.
+2. **Authorize the Paraloom connector** (its data connection) — in **Settings → Connectors**,
+   a one-time sign-in.
 
-You don't run any commands yourself. Claude installs the plugin, installs the Python bits, saves
-your keyword-research credentials, and checks everything.
+Installing the plugin does **not** auto-connect Paraloom. The bundled Paraloom MCP shows up as a
+**connector** you approve once in Settings → Connectors. Until you do, the skills load but any
+Paraloom action (list teams, create a campaign) fails. This is normal Claude Desktop behavior for
+any plugin that ships an MCP server — it's not specific to this plugin.
 
-1. Open the **Claude Desktop** app.
-2. Switch to **code mode** (the Claude Code panel — the coding view, not the normal chat).
-3. Open the [`install-prompt.md`](install-prompt.md) prompt (Ryan will send you the filled-in
-   version). Paste it and send.
-4. When Claude asks permission to run a step, click **Allow**.
-5. When it's done, type `/reload-plugins`, then `/paraloom:start`.
-6. The first time it uses Paraloom you'll get a one-time sign-in at `app.paraloom.ai` — approve it.
-
-That's it. If a Paraloom experiment folder is what you want, Claude tells you what to do next from
-there. See [`install-prompt.md`](install-prompt.md) for the prompt itself and notes for whoever
-distributes it.
-
-> **Why code mode?** Only code mode can run commands and install plugins for you. Regular chat mode
-> can't — for that, see "Chat / home mode" near the bottom.
+A third thing is needed for **keyword research and the hygiene check** to work: Python packages and
+DataForSEO credentials (see [Prerequisites](#prerequisites-python--credentials)). The paste-once
+prompt route below sets those up for you; the UI route does not.
 
 ---
 
-## Manual install (if you'd rather do it yourself)
+## Route A — Claude Desktop UI (recommended, no terminal)
 
-**One-time prerequisites**
+This is the smoothest way to get the plugin in.
 
-1. A **paid Claude plan** (Pro, Max, Team, or Enterprise) — plugins don't work on free.
-2. A **Paraloom login** with access to your team(s).
-3. **Python 3** with the tool packages:
-   ```bash
-   pip3 install --user markdown-it-py pyspellchecker requests beautifulsoup4
-   ```
-   (If pip says "externally managed environment," add `--break-system-packages` to the end.)
-   Optional, only for the compliance **PDF** (the deliverable is also readable from its web link):
-   `pip3 install weasyprint` plus, on macOS, `brew install glib pango cairo`.
-4. **DataForSEO credentials** for keyword research — create `~/.dataforseo.env`:
-   ```
-   DATAFORSEO_LOGIN=your-login
-   DATAFORSEO_PASSWORD=your-password
-   ```
-   Ask Ryan for the shared credentials.
+1. **Settings → Plugins → Add → Add marketplace → Add from a repository.**
+2. Enter `https://github.com/metrifi/paraloom-plugin` and **Sync**, then **Install** the `paraloom`
+   plugin. It shows "ready to use."
+3. **Authorize Paraloom:** go to **Settings → Connectors**, find **Paraloom**, and sign in
+   (`app.paraloom.ai`). This is the step that actually connects it.
+4. **Restart Claude** (fully quit and reopen) if a chat you already had open doesn't see the plugin.
+5. Set up the Python packages + DataForSEO creds once — see [Prerequisites](#prerequisites-python--credentials).
 
-**Install the plugin** — inside a Claude Code session (Desktop code mode or the `claude` CLI):
+Then start a chat and say *"set up this project"* or *"run an experiment for `<team>` on
+`<topic>`"*, or run `/paraloom:start`.
+
+---
+
+## Route B — Paste-once prompt (also installs Python deps + your creds)
+
+Use this when you want one paste to handle *everything*, including the Python packages and DataForSEO
+credentials that Route A leaves to you. It runs in **Claude Desktop code mode** (the Claude Code
+panel) or the Claude Code CLI — a session that can run commands.
+
+1. Open the prompt in [`install-prompt.md`](install-prompt.md) (Ryan sends the version with the
+   DataForSEO credentials already filled in).
+2. Paste it into a **code-mode** session and approve the steps.
+3. When it finishes, **fully quit and reopen** Claude (a running session started before the install
+   won't see the new plugin, and `/reload-plugins` isn't always available), then run `/paraloom:start`.
+4. Authorize Paraloom in **Settings → Connectors** as in Route A, step 3.
+
+Honest note: this route is more powerful (it does the Python + creds) but clunkier than Route A —
+it needs a code-mode session and a restart. If Python and creds are already set up on the machine,
+Route A is simpler.
+
+---
+
+## Route C — Command line
+
+Inside a Claude Code session (Desktop code mode or the `claude` CLI):
 ```
 /plugin marketplace add metrifi/paraloom-plugin
 /plugin install paraloom@paraloom-tools
 /reload-plugins
 ```
-Then sign into `app.paraloom.ai` the first time a Paraloom tool runs, and start with
-`/paraloom:start` from the folder you want this customer's work saved in.
+Then authorize Paraloom in Settings → Connectors, and do the [Prerequisites](#prerequisites-python--credentials).
 
 To test without installing, point Claude at a local checkout:
 ```bash
@@ -67,39 +77,60 @@ claude --plugin-dir ./paraloom-plugin/plugins/paraloom
 
 ---
 
-## Chat / home mode (Claude Desktop or claude.ai, normal chat)
+## Route D — Upload a zip (no repo access needed)
 
-Regular chat mode can use the **review skills** (compliance check, fact check, hygiene, keyword
-research, status) but **not** the full experiment automation (sub-agents are disabled there). Use
-it for one-off reviews, not for running an experiment end to end.
+For a machine that shouldn't pull from GitHub. **Settings → Plugins → Add → Upload plugin**, and
+select a zip **whose root is the plugin** (contains `.claude-plugin/plugin.json` at the top level).
 
-1. In the app, open the **+** menu → **Plugins**.
-2. Add the repository `metrifi/paraloom-plugin` as a marketplace.
-3. Install **paraloom** from it, and sign into Paraloom when prompted.
+Build that zip from a checkout — zip the *plugin folder's contents*, not the whole repo:
+```bash
+cd paraloom-plugin/plugins/paraloom
+zip -rq ~/paraloom-plugin.zip . -x '*.DS_Store'
+```
+(A prebuilt `dist/paraloom-plugin.zip` is produced in the repo for convenience.) Then authorize the
+Paraloom connector and do the Prerequisites, same as the other routes.
+
+---
+
+## Prerequisites: Python + credentials
+
+Needed for keyword research and the hygiene check (Route B installs these for you; the others don't):
+
+1. A **paid Claude plan** (Pro / Max / Team / Enterprise) — plugins don't work on free.
+2. A **Paraloom login** with access to your team(s).
+3. **Python 3** + packages:
+   ```bash
+   pip3 install --user markdown-it-py pyspellchecker requests beautifulsoup4
+   ```
+   (If pip says "externally managed environment," add `--break-system-packages`.)
+4. **DataForSEO credentials** — create `~/.dataforseo.env`:
+   ```
+   DATAFORSEO_LOGIN=your-login
+   DATAFORSEO_PASSWORD=your-password
+   ```
+   Ask Ryan for the shared credentials.
+5. **A real browser tool** for fact-checking (Playwright MCP or Claude-in-Chrome). Not bundled; if
+   absent, fact-checking falls back to manual verification.
 
 ---
 
 ## Everyday use
 
-- **Run an experiment:** just say *"run an experiment for `<team>` on `<topic>`"*, or step through
+- **Run an experiment:** *"run an experiment for `<team>` on `<topic>`"*, or step through
   `/paraloom:exp-research` → `/paraloom:exp-build` → `/paraloom:exp-review` → `/paraloom:exp-deliver`.
-  The two human gates are the **FI sign-off** and the **send-approval** on the client email.
 - **Check status:** `/paraloom:exp-status` or *"where are we with `<slug>`?"*
-- **Client answered:** `/paraloom:exp-revise` or *"the client responded — apply it and push a revision."*
+- **Client answered:** `/paraloom:exp-revise`.
 - **Just a review:** ask for a compliance / fact / hygiene / keyword check and the matching skill fires.
 
-See the README's "How to use it" section for a fuller list of example prompts.
+See the README's "How to use it" for a fuller list of prompts.
 
-## Updating
+## Updating / removing
 
 ```
 /plugin marketplace update paraloom-tools
 /plugin update paraloom@paraloom-tools
 /reload-plugins
 ```
-
-## Removing
-
 ```
 /plugin uninstall paraloom@paraloom-tools
 /plugin marketplace remove paraloom-tools
@@ -109,13 +140,18 @@ See the README's "How to use it" section for a fuller list of example prompts.
 
 ## Troubleshooting
 
-- **`/plugin` not recognized:** update Claude Code (`brew upgrade claude-code` or
-  `npm install -g @anthropic-ai/claude-code@latest`), then restart.
-- **Paraloom tools don't appear / calls fail:** you haven't signed in yet. Trigger any Paraloom
-  action and complete the `app.paraloom.ai` sign-in. Confirm your account has access to the team.
-- **A Python tool errors on a missing module:** run the `pip3 install --user …` line above (add
-  `--break-system-packages` if asked). For the compliance PDF, also install `weasyprint`.
+- **Claude says Paraloom "needs a sign-in this session can't do" / refuses to call it:** it's
+  probably already connected — tell it to **just try the call**. The Paraloom connection is a
+  one-time authorization in **Settings → Connectors**, not something a chat has to perform. Once
+  that connector shows connected, the tools work.
+- **`/paraloom:start` is "unknown command" right after install:** the running session started before
+  the plugin loaded. **Fully quit and reopen Claude** (Cmd+Q on Mac), then try again. `/reload-plugins`
+  works only in the Claude Code CLI, not every Desktop surface.
+- **Plugin installed but Paraloom tools missing:** you installed the plugin but haven't authorized
+  the connector. Go to **Settings → Connectors → Paraloom → sign in**.
+- **Zip upload rejected — "missing .claude-plugin/plugin.json":** you zipped the whole repo; the
+  uploader wants a zip whose **root** is the plugin. See Route D.
+- **Keyword research / hygiene errors on a missing Python module:** do the Prerequisites `pip3
+  install` (add `--break-system-packages` if asked).
 - **Keyword research returns no volume:** `~/.dataforseo.env` is missing or empty.
-- **Fact verification can't browse:** the Playwright MCP isn't connected (it's not bundled). Fact
-  checks fall back to manual verification until it's added.
 - **Skills don't show up after install:** `rm -rf ~/.claude/plugins/cache`, restart, reinstall.

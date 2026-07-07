@@ -3,6 +3,21 @@
 All notable changes to the Paraloom plugin are recorded here. Versions follow the `plugin.json`
 `version` field (semver).
 
+## [0.1.2] — 2026-07-07
+
+Fixes from the first internal install test.
+
+### Fixed
+- The `start` and `project-setup` skills no longer tell the user the Paraloom connection "can't be
+  done this session." They explain that the Paraloom connector authorizes **once in Settings →
+  Connectors** (Desktop) or via `/mcp` (CLI), separately from the plugin install, and instruct the
+  agent to **attempt the call** rather than preemptively refuse.
+
+### Changed / Added
+- INSTALL.md rewritten around the real two-step reality — install the plugin, then authorize the
+  connector — with four routes: Desktop UI (recommended), the paste-once prompt, the CLI, and a
+  **zip upload** route. Added a prebuilt `dist/paraloom-plugin.zip` (plugin-root zip for the uploader).
+
 ## [0.1.1] — 2026-07-07
 
 Install ergonomics + cleanup ahead of the internal team test. No behavior change to the skills.
