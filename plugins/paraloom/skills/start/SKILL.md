@@ -4,7 +4,7 @@ description: >
   Orientation and intent-router for the Paraloom experiment toolkit. Load this at the
   start of a Paraloom work session, or when someone asks "what can this do", "how do I run
   a Paraloom experiment", "get started", "set up this project", or gives a plain-language
-  ask like "run an experiment for <team> on <topic>", "check in on <slug>", "the client
+  ask like "run an experiment for a team on a topic", "check in on an experiment", "the client
   answered", or "ship the deliverable to the client". Explains who you are (you work for
   Paraloom, not the credit union), the phased workflow, the /exp-* skills, the human gates,
   and the hard methodology rules, then routes the request to the right skill.

@@ -3,6 +3,17 @@
 All notable changes to the Paraloom plugin are recorded here. Versions follow the `plugin.json`
 `version` field (semver).
 
+## [0.1.3] — 2026-07-07
+
+Fix the Claude Desktop "Upload plugin" route.
+
+### Fixed
+- Removed angle-bracket placeholders (`<team>`, `<topic>`, `<slug>`, `<experiment/team>`) from the
+  `start`, `exp-research`, and `exp-status` skill **descriptions**. The Desktop plugin uploader
+  validates stricter than `claude plugin validate` and rejected them as XML tags
+  ("SKILL.md description cannot contain XML tags"), failing the zip upload. Descriptions now use
+  plain wording; the triggers are unchanged in meaning. Rebuilt `dist/paraloom-plugin.zip`.
+
 ## [0.1.2] — 2026-07-07
 
 Fixes from the first internal install test.

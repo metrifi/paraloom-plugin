@@ -4,7 +4,7 @@ description: >
   Phase 1-2 of a Paraloom experiment: research a topic, generate keyword-grounded candidate
   prompts across intent angles / geographies / segments, triage to a demand-validated set, then
   create (or reuse) the Paraloom campaign, create the prompts, and run them. Use as the first
-  step of an experiment — "start an experiment for <team> on <topic>", "research this topic",
+  step of an experiment — "start an experiment for a team on a topic", "research this topic",
   "stand up a campaign". Offer a dry run (triage only, no writes) if the topic is unvalidated.
   After this, wait for responses to populate, then run exp-build.
 ---

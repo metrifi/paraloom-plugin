@@ -1,7 +1,7 @@
 ---
 name: exp-status
 description: |
-  Status rollup for Paraloom experiments: read each experiment's workflow-log.md and experiment.md, report current phase, IDs, what's next per EXPERIMENT_WORKFLOW.md, and everything waiting on a human (draft review, Phase 9 compliance sign-off, client answers, send approval). Use whenever Ryan asks to check in — "check in on <slug>", "status of <experiment/team>", "where are we with <team>?", "what's the latest", "how's <slug> going", "what needs me?", "what's waiting on me?", "resume <slug>" — for one experiment or across all of them. Read-only: never mutates files or Paraloom.
+  Status rollup for Paraloom experiments: read each experiment's workflow-log.md and experiment.md, report current phase, IDs, what's next per EXPERIMENT_WORKFLOW.md, and everything waiting on a human (draft review, Phase 9 compliance sign-off, client answers, send approval). Use whenever someone asks to check in — "check in on an experiment", "status of an experiment or team", "where are we with a team?", "what's the latest", "how's it going", "what needs me?", "what's waiting on me?", "resume an experiment" — for one experiment or across all of them. Read-only: never mutates files or Paraloom.
 ---
 
 # Exp-Status Skill
