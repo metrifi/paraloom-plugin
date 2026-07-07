@@ -16,7 +16,9 @@ Fixes from the first internal install test.
 ### Changed / Added
 - INSTALL.md rewritten around the real two-step reality — install the plugin, then authorize the
   connector — with four routes: Desktop UI (recommended), the paste-once prompt, the CLI, and a
-  **zip upload** route. Added a prebuilt `dist/paraloom-plugin.zip` (plugin-root zip for the uploader).
+  **zip upload** route. Added a prebuilt `dist/paraloom-plugin.zip` (plugin-root zip for the
+  uploader) and a one-page PDF install guide (`docs/Paraloom-Plugin-Install-Guide.pdf`, source
+  `docs/install-guide.html`) for the Upload-plugin → Connectors flow.
 
 ## [0.1.1] — 2026-07-07
 
