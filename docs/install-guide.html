@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Install the Paraloom Plugin</title>
+<style>
+  :root{
+    --ink:#0F172A; --muted:#64748B; --line:#E2E8F0;
+    --brand:#4338CA; --brand2:#6366F1; --wash:#EEF2FF; --good:#047857; --goodwash:#ECFDF5;
+  }
+  *{box-sizing:border-box}
+  @page{ size:Letter; margin:14mm 15mm; }
+  html,body{margin:0;padding:0}
+  body{
+    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .wrap{max-width:720px;margin:0 auto}
+
+  header{
+    background:linear-gradient(120deg,var(--brand),var(--brand2));
+    color:#fff;border-radius:16px;padding:24px 26px;margin-bottom:22px;
+  }
+  .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.85;font-weight:600;margin:0 0 6px}
+  header h1{margin:0;font-size:26px;font-weight:750;letter-spacing:-.01em}
+  header p{margin:8px 0 0;font-size:14px;opacity:.92}
+
+  .note{
+    background:var(--wash);border:1px solid #E0E7FF;border-radius:12px;
+    padding:14px 16px;margin:0 0 22px;font-size:13.5px;color:#3730A3;
+  }
+  .note b{color:#312E81}
+  .note code{background:#fff;border:1px solid #E0E7FF;border-radius:5px;padding:1px 6px;font-size:12.5px;color:#3730A3}
+
+  h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+     margin:0 0 14px;font-weight:700}
+
+  ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+  ol.steps li{
+    position:relative;padding:0 0 16px 52px;margin:0;min-height:40px;counter-increment:s;
+  }
+  ol.steps li::before{
+    content:counter(s);position:absolute;left:0;top:-2px;
+    width:34px;height:34px;border-radius:50%;
+    background:var(--brand);color:#fff;font-weight:700;font-size:15px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  ol.steps li::after{
+    content:"";position:absolute;left:16px;top:36px;bottom:2px;width:2px;background:var(--line);
+  }
+  ol.steps li:last-child::after{display:none}
+  .step-t{font-weight:650;font-size:15px;margin:5px 0 2px}
+  .step-d{color:var(--muted);font-size:13.5px;margin:0}
+  .pill{display:inline-block;background:#F1F5F9;border:1px solid var(--line);border-radius:6px;
+        padding:1px 7px;font-weight:600;color:#334155;font-size:12.5px;white-space:nowrap}
+  .arrow{color:#94A3B8;padding:0 2px;font-weight:700}
+
+  .done{
+    background:var(--goodwash);border:1px solid #A7F3D0;border-radius:12px;
+    padding:14px 16px;margin:22px 0 0;font-size:13.5px;color:#065F46;
+  }
+  .done b{color:var(--good)}
+  .done code{background:#fff;border:1px solid #A7F3D0;border-radius:5px;padding:1px 6px;color:#065F46;font-size:12.5px}
+
+  footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);
+         color:#94A3B8;font-size:11.5px;display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">MetriFi · Paraloom</p>
+    <h1>Install the Paraloom Plugin</h1>
+    <p>Claude Desktop · about 5 minutes · no terminal needed</p>
+  </header>
+
+  <div class="note">
+    <b>Before you start:</b> you need <b>Claude Desktop</b> on a paid plan (Pro, Max, Team, or
+    Enterprise) and a <b>Paraloom login</b>. Download the plugin file <code>paraloom-plugin.zip</code>
+    from <b>github.com/metrifi/paraloom-plugin</b> (in the <code>dist</code> folder) and save it where
+    you can find it.
+  </div>
+
+  <h2>Install in 6 steps</h2>
+  <ol class="steps">
+    <li>
+      <div class="step-t">Open Claude Desktop and go to <span class="pill">Settings</span></div>
+      <div class="step-d">Click your name or the gear icon to open Settings.</div>
+    </li>
+    <li>
+      <div class="step-t">Open the <span class="pill">Plugins</span> section</div>
+      <div class="step-d">In the Settings sidebar, choose Plugins.</div>
+    </li>
+    <li>
+      <div class="step-t"><span class="pill">Add</span> <span class="arrow">→</span> <span class="pill">Upload plugin</span></div>
+      <div class="step-d">Click Add, then choose “Upload plugin.”</div>
+    </li>
+    <li>
+      <div class="step-t">Drop in <span class="pill">paraloom-plugin.zip</span> and click <span class="pill">Upload</span></div>
+      <div class="step-d">Select the zip you downloaded. It installs as “ready to use.”</div>
+    </li>
+    <li>
+      <div class="step-t">Open the <span class="pill">Connectors</span> tab and click <span class="pill">Install</span> next to <b>Paraloom</b></div>
+      <div class="step-d">This connects the plugin to your Paraloom data. Installing the plugin and connecting Paraloom are two separate steps — this is the second one.</div>
+    </li>
+    <li>
+      <div class="step-t">Sign in to <b>Paraloom</b> when prompted</div>
+      <div class="step-d">A window opens to app.paraloom.ai — approve the sign-in. This happens once.</div>
+    </li>
+  </ol>
+
+  <div class="done">
+    <b>You’re ready.</b> Start a new chat and type <code>/paraloom:start</code>, or just say
+    <i>“run an experiment for &lt;team&gt; on &lt;topic&gt;.”</i> If a chat you already had open
+    doesn’t see the plugin, fully quit Claude (Cmd&#8209;Q) and reopen it.
+  </div>
+
+  <footer>
+    <span>Paraloom plugin · install guide</span>
+    <span>github.com/metrifi/paraloom-plugin</span>
+  </footer>
+
+</div>
+</body>
+</html>

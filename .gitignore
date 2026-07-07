@@ -17,5 +17,6 @@ venv/
 .idea/
 .vscode/
 
-# build artifacts (upload zips)
-dist/
+# build artifacts, but keep the distributable plugin zip
+dist/*
+!dist/paraloom-plugin.zip
