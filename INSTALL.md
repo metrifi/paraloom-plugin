@@ -30,13 +30,14 @@ This is the smoothest way to get the plugin in.
 1. **Settings → Plugins → Add → Add marketplace → Add from a repository.**
 2. Enter `https://github.com/metrifi/paraloom-plugin` and **Sync**, then **Install** the `paraloom`
    plugin. It shows "ready to use."
-3. **Authorize Paraloom:** go to **Settings → Connectors**, find **Paraloom**, and sign in
-   (`app.paraloom.ai`). This is the step that actually connects it.
+3. **Authorize Paraloom:** open the **Connectors** tab, click **Install** next to **Paraloom** (the
+   button then changes to **Connect**), click **Connect**, and sign in at `app.paraloom.ai`. Claude
+   shows "Connected." This one-time connection is the step that actually wires up Paraloom.
 4. **Restart Claude** (fully quit and reopen) if a chat you already had open doesn't see the plugin.
 5. Set up the Python packages + DataForSEO creds once — see [Prerequisites](#prerequisites-python--credentials).
 
-Then start a chat and say *"set up this project"* or *"run an experiment for `<team>` on
-`<topic>`"*, or run `/paraloom:start`.
+Then start a chat and say *"set up this project"* or *"run an experiment for a team on a topic"*,
+or run `/paraloom:start`.
 
 ---
 

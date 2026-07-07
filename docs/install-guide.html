@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Install the Paraloom Plugin</title>
+<title>Install & Use the Paraloom Plugin</title>
 <style>
   :root{
     --ink:#0F172A; --muted:#64748B; --line:#E2E8F0;
@@ -37,7 +37,7 @@
 
   ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
   ol.steps li{
-    position:relative;padding:0 0 16px 52px;margin:0;min-height:40px;counter-increment:s;
+    position:relative;padding:0 0 15px 52px;margin:0;min-height:40px;counter-increment:s;
   }
   ol.steps li::before{
     content:counter(s);position:absolute;left:0;top:-2px;
@@ -62,6 +62,21 @@
   .done b{color:var(--good)}
   .done code{background:#fff;border:1px solid #A7F3D0;border-radius:5px;padding:1px 6px;color:#065F46;font-size:12.5px}
 
+  /* page 2 — usage */
+  .usage{break-before:page;padding-top:4px}
+  .usage h1{font-size:22px;font-weight:750;letter-spacing:-.01em;margin:0 0 4px}
+  .usage .lead{color:var(--muted);font-size:14px;margin:0 0 20px}
+  .card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 14px}
+  .card .lbl{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+             font-weight:700;color:var(--brand);background:var(--wash);border-radius:20px;
+             padding:3px 10px;margin:0 0 10px}
+  .prompt{
+    background:#0F172A;color:#E2E8F0;border-radius:10px;padding:12px 14px;
+    font:13.5px/1.5 "SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  .prompt .ph{color:#A5B4FC}
+  .card .hint{color:var(--muted);font-size:12.5px;margin:9px 0 0}
+
   footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);
          color:#94A3B8;font-size:11.5px;display:flex;justify-content:space-between}
 </style>
@@ -71,7 +86,7 @@
 
   <header>
     <p class="eyebrow">MetriFi · Paraloom</p>
-    <h1>Install the Paraloom Plugin</h1>
+    <h1>Install &amp; Use the Paraloom Plugin</h1>
     <p>Claude Desktop · about 5 minutes · no terminal needed</p>
   </header>
 
@@ -82,7 +97,7 @@
     you can find it.
   </div>
 
-  <h2>Install in 6 steps</h2>
+  <h2>Install in 7 steps</h2>
   <ol class="steps">
     <li>
       <div class="step-t">Open Claude Desktop and go to <span class="pill">Settings</span></div>
@@ -90,7 +105,6 @@
     </li>
     <li>
       <div class="step-t">Open the <span class="pill">Plugins</span> section</div>
-      <div class="step-d">In the Settings sidebar, choose Plugins.</div>
     </li>
     <li>
       <div class="step-t"><span class="pill">Add</span> <span class="arrow">→</span> <span class="pill">Upload plugin</span></div>
@@ -102,24 +116,59 @@
     </li>
     <li>
       <div class="step-t">Open the <span class="pill">Connectors</span> tab and click <span class="pill">Install</span> next to <b>Paraloom</b></div>
-      <div class="step-d">This connects the plugin to your Paraloom data. Installing the plugin and connecting Paraloom are two separate steps — this is the second one.</div>
+      <div class="step-d">This adds the Paraloom connector. The button then changes to <b>Connect</b>.</div>
     </li>
     <li>
-      <div class="step-t">Sign in to <b>Paraloom</b> when prompted</div>
-      <div class="step-d">A window opens to app.paraloom.ai — approve the sign-in. This happens once.</div>
+      <div class="step-t">Click <span class="pill">Connect</span></div>
+      <div class="step-d">The Paraloom sign-in window opens.</div>
+    </li>
+    <li>
+      <div class="step-t">Log in to <b>Paraloom</b></div>
+      <div class="step-d">After you sign in, Claude Desktop shows <b>Connected</b>. You only do this once.</div>
     </li>
   </ol>
 
   <div class="done">
-    <b>You’re ready.</b> Start a new chat and type <code>/paraloom:start</code>, or just say
-    <i>“run an experiment for &lt;team&gt; on &lt;topic&gt;.”</i> If a chat you already had open
-    doesn’t see the plugin, fully quit Claude (Cmd&#8209;Q) and reopen it.
+    <b>You’re connected.</b> Start a new chat and try one of the prompts on the next page. If a chat
+    you already had open doesn’t see the plugin, fully quit Claude (Cmd&#8209;Q) and reopen it.
   </div>
 
-  <footer>
-    <span>Paraloom plugin · install guide</span>
-    <span>github.com/metrifi/paraloom-plugin</span>
-  </footer>
+  <!-- Page 2 -->
+  <section class="usage">
+    <h1>Using the plugin</h1>
+    <p class="lead">The plugin runs the Paraloom experiment workflow. Just type one of these in a
+      normal chat and swap in your own details. It handles the phases and pauses at the points that
+      need a human.</p>
+
+    <div class="card">
+      <span class="lbl">Kick off an experiment</span>
+      <div class="prompt">Run an experiment for <span class="ph">[credit union]</span> on <span class="ph">[topic]</span>.</div>
+      <p class="hint">Example: <i>“Run an experiment for Listerhill Credit Union on first-time
+        homebuyer mortgages.”</i> It researches real search demand, designs the experiment, drafts
+        the article, and runs the compliance/fact/accessibility reviews — then prepares the client
+        deliverable and stops for the FI sign-off.</p>
+    </div>
+
+    <div class="card">
+      <span class="lbl">Send it to the customer</span>
+      <div class="prompt">Send the <span class="ph">[experiment]</span> deliverable to the client.</div>
+      <p class="hint">It builds and publishes the deliverable and drafts the client email — then
+        <b>waits for your OK</b> before anything is actually sent.</p>
+    </div>
+
+    <div class="card">
+      <span class="lbl">Check for revisions</span>
+      <div class="prompt">Check <span class="ph">[experiment]</span> for client responses and apply any revisions.</div>
+      <p class="hint">It pulls the client’s answers and checklist confirmations, applies them the
+        right way, re-runs the reviews, and pushes an updated version. If nothing new came in, it
+        says so and stops.</p>
+    </div>
+
+    <footer>
+      <span>Paraloom plugin · install &amp; use guide</span>
+      <span>github.com/metrifi/paraloom-plugin</span>
+    </footer>
+  </section>
 
 </div>
 </body>

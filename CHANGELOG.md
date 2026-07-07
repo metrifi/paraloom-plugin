@@ -14,6 +14,12 @@ Fix the Claude Desktop "Upload plugin" route.
   ("SKILL.md description cannot contain XML tags"), failing the zip upload. Descriptions now use
   plain wording; the triggers are unchanged in meaning. Rebuilt `dist/paraloom-plugin.zip`.
 
+### Docs
+- Install guide PDF now shows the real connector flow (Connectors tab → **Install** → button becomes
+  **Connect** → sign in at app.paraloom.ai) and adds a second page with three example prompts:
+  kick off an experiment, send the deliverable to the client, and check for/apply revisions. INSTALL.md
+  connector step updated to match.
+
 ## [0.1.2] — 2026-07-07
 
 Fixes from the first internal install test.
