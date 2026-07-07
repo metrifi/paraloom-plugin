@@ -19,6 +19,8 @@ Fix the Claude Desktop "Upload plugin" route.
   **Connect** → sign in at app.paraloom.ai) and adds a second page with three example prompts:
   kick off an experiment, send the deliverable to the client, and check for/apply revisions. INSTALL.md
   connector step updated to match.
+- Added `playwright-setup-prompt.md` — a paste-once prompt to install the Playwright browser MCP
+  (needed for fact-checking), with an INSTALL.md prerequisites pointer.
 
 ## [0.1.2] — 2026-07-07
 
