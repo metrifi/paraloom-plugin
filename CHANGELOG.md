@@ -3,6 +3,28 @@
 All notable changes to the Paraloom plugin are recorded here. Versions follow the `plugin.json`
 `version` field (semver).
 
+## [0.1.1] — 2026-07-07
+
+Install ergonomics + cleanup ahead of the internal team test. No behavior change to the skills.
+
+### Added
+- `install-prompt.md` — a paste-once prompt for Claude Desktop code mode that has Claude install
+  the plugin, install the Python deps (handling missing Python via Homebrew and the pip
+  "externally managed" error), write `~/.dataforseo.env`, and check for a browser tool. Intended to
+  be distributed with the DataForSEO credentials filled in.
+- README "How to use it" (example prompts by workflow) and "Install" sections; INSTALL.md rewritten
+  to lead with the paste-once path.
+
+### Changed
+- Stripped machine-specific absolute paths: `conventions.md` no longer references copying a local
+  `_paraloom-agent` kit; the `exp-deliver`/`exp-revise` workflows use `${dir}`-relative paths and an
+  empty `paraloomPath` default instead of `/Users/ryanharmon/...` hardcodes.
+
+### Notes
+- Repo published public at `metrifi/paraloom-plugin`.
+- Direction set for a future server-side MCP migration (no Python/pip/creds/forced-Playwright);
+  plan tracked on the Paraloom branch `geo-plugin-mcp-tooling`. See `docs/ROADMAP.md`.
+
 ## [0.1.0] — 2026-07-06
 
 Initial release. Packages the `paraloom-agent` toolkit as an installable Claude Code plugin +

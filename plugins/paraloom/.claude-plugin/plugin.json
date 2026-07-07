@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "paraloom",
   "description": "Run Paraloom AI-search visibility experiments end to end: research a topic, ground prompts in real search demand, baseline LLM responses, design the experiment, draft the article, run the pre-publish review battery (hygiene, NCUA compliance, ADA, fact-check), package for the FI sign-off, and publish the client deliverable. Bundles the Paraloom MCP connector so there is nothing to wire up by hand.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Paraloom (MetriFi)",
     "email": "ryan.harmon@metrifi.com"

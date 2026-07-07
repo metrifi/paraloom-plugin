@@ -13,7 +13,7 @@
       "name": "paraloom",
       "source": "./plugins/paraloom",
       "description": "Run Paraloom AI-search visibility experiments end to end (research, baseline, design, draft, review battery, FI sign-off package, client deliverable). Ships the Paraloom MCP connector, the five review skills, and the /exp-* experiment phases.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "category": "workflow",
       "keywords": ["paraloom", "credit-union", "ai-search-visibility", "compliance"]
     }
