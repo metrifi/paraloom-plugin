@@ -6,169 +6,105 @@
 <style>
   :root{
     --ink:#0F172A; --muted:#64748B; --line:#E2E8F0;
-    --brand:#4338CA; --brand2:#6366F1; --wash:#EEF2FF; --good:#047857; --goodwash:#ECFDF5;
+    --brand:#4338CA; --brand2:#6366F1; --wash:#EEF2FF;
   }
   *{box-sizing:border-box}
-  @page{ size:Letter; margin:14mm 15mm; }
+  @page{ size:Letter; margin:12mm 14mm; }
   html,body{margin:0;padding:0}
   body{
-    font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    font:13px/1.42 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
     color:var(--ink); -webkit-print-color-adjust:exact; print-color-adjust:exact;
   }
-  .wrap{max-width:720px;margin:0 auto}
+  .wrap{max-width:700px;margin:0 auto}
 
   header{
     background:linear-gradient(120deg,var(--brand),var(--brand2));
-    color:#fff;border-radius:16px;padding:24px 26px;margin-bottom:22px;
+    color:#fff;border-radius:12px;padding:13px 18px;margin-bottom:16px;
+    display:flex;align-items:baseline;justify-content:space-between;gap:12px;
   }
-  .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.85;font-weight:600;margin:0 0 6px}
-  header h1{margin:0;font-size:26px;font-weight:750;letter-spacing:-.01em}
-  header p{margin:8px 0 0;font-size:14px;opacity:.92}
+  header h1{margin:0;font-size:19px;font-weight:750;letter-spacing:-.01em}
+  header .sub{font-size:12px;opacity:.9;white-space:nowrap}
 
-  .note{
-    background:var(--wash);border:1px solid #E0E7FF;border-radius:12px;
-    padding:14px 16px;margin:0 0 22px;font-size:13.5px;color:#3730A3;
-  }
-  .note b{color:#312E81}
-  .note code{background:#fff;border:1px solid #E0E7FF;border-radius:5px;padding:1px 6px;font-size:12.5px;color:#3730A3}
+  h2{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
+     margin:0 0 9px;font-weight:700}
+  .sec{margin-bottom:16px}
 
-  h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
-     margin:0 0 14px;font-weight:700}
-
-  ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
-  ol.steps li{
-    position:relative;padding:0 0 15px 52px;margin:0;min-height:40px;counter-increment:s;
-  }
+  ol.steps{list-style:none;margin:0;padding:0;counter-reset:s;
+           display:grid;grid-template-columns:1fr 1fr;gap:7px 22px}
+  ol.steps li{position:relative;padding:2px 0 2px 30px;counter-increment:s;font-size:12.5px;font-weight:550}
   ol.steps li::before{
-    content:counter(s);position:absolute;left:0;top:-2px;
-    width:34px;height:34px;border-radius:50%;
-    background:var(--brand);color:#fff;font-weight:700;font-size:15px;
-    display:flex;align-items:center;justify-content:center;
+    content:counter(s);position:absolute;left:0;top:0;
+    width:21px;height:21px;border-radius:50%;background:var(--brand);color:#fff;
+    font-weight:700;font-size:12px;display:flex;align-items:center;justify-content:center;
   }
-  ol.steps li::after{
-    content:"";position:absolute;left:16px;top:36px;bottom:2px;width:2px;background:var(--line);
-  }
-  ol.steps li:last-child::after{display:none}
-  .step-t{font-weight:650;font-size:15px;margin:5px 0 2px}
-  .step-d{color:var(--muted);font-size:13.5px;margin:0}
-  .pill{display:inline-block;background:#F1F5F9;border:1px solid var(--line);border-radius:6px;
-        padding:1px 7px;font-weight:600;color:#334155;font-size:12.5px;white-space:nowrap}
-  .arrow{color:#94A3B8;padding:0 2px;font-weight:700}
+  .pill{display:inline-block;background:#F1F5F9;border:1px solid var(--line);border-radius:5px;
+        padding:0 5px;font-weight:650;color:#334155;font-size:11.5px;white-space:nowrap}
 
-  .done{
-    background:var(--goodwash);border:1px solid #A7F3D0;border-radius:12px;
-    padding:14px 16px;margin:22px 0 0;font-size:13.5px;color:#065F46;
-  }
-  .done b{color:var(--good)}
-  .done code{background:#fff;border:1px solid #A7F3D0;border-radius:5px;padding:1px 6px;color:#065F46;font-size:12.5px}
-
-  /* page 2 — usage */
-  .usage{break-before:page;padding-top:4px}
-  .usage h1{font-size:22px;font-weight:750;letter-spacing:-.01em;margin:0 0 4px}
-  .usage .lead{color:var(--muted);font-size:14px;margin:0 0 20px}
-  .card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:0 0 14px}
-  .card .lbl{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
-             font-weight:700;color:var(--brand);background:var(--wash);border-radius:20px;
-             padding:3px 10px;margin:0 0 10px}
   .prompt{
-    background:#0F172A;color:#E2E8F0;border-radius:10px;padding:12px 14px;
-    font:13.5px/1.5 "SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    background:#0F172A;color:#E2E8F0;border-radius:9px;padding:10px 12px;
+    font:12px/1.5 "SF Mono",ui-monospace,Menlo,Consolas,monospace;
   }
   .prompt .ph{color:#A5B4FC}
-  .card .hint{color:var(--muted);font-size:12.5px;margin:9px 0 0}
+  .setup .lead{color:var(--muted);font-size:12px;margin:0 0 8px}
 
-  footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);
-         color:#94A3B8;font-size:11.5px;display:flex;justify-content:space-between}
+  .cards{display:grid;grid-template-columns:1fr;gap:8px}
+  .card{border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .card .lbl{display:inline-block;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+             font-weight:700;color:var(--brand);margin:0 0 6px}
+
+  footer{margin-top:14px;padding-top:9px;border-top:1px solid var(--line);
+         color:#94A3B8;font-size:10.5px;display:flex;justify-content:space-between}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header>
-    <p class="eyebrow">MetriFi · Paraloom</p>
     <h1>Install &amp; Use the Paraloom Plugin</h1>
-    <p>Claude Desktop · about 5 minutes · no terminal needed</p>
+    <span class="sub">Claude Desktop · ~5 minutes</span>
   </header>
 
-  <div class="note">
-    <b>Before you start:</b> you need <b>Claude Desktop</b> on a paid plan (Pro, Max, Team, or
-    Enterprise) and a <b>Paraloom login</b>. Download the plugin file <code>paraloom-plugin.zip</code>
-    from <b>github.com/metrifi/paraloom-plugin</b> (in the <code>dist</code> folder) and save it where
-    you can find it.
+  <div class="sec">
+    <h2>Install</h2>
+    <ol class="steps">
+      <li>Open Claude Desktop <span class="pill">Settings</span></li>
+      <li>Go to <span class="pill">Plugins</span></li>
+      <li><span class="pill">Add</span> → <span class="pill">Upload plugin</span></li>
+      <li>Drop in <span class="pill">paraloom-plugin.zip</span> → <span class="pill">Upload</span></li>
+      <li><span class="pill">Connectors</span> tab → <span class="pill">Install</span> by <b>Paraloom</b></li>
+      <li>Click <span class="pill">Connect</span></li>
+      <li>Sign in to Paraloom → shows <b>Connected</b></li>
+    </ol>
   </div>
 
-  <h2>Install in 7 steps</h2>
-  <ol class="steps">
-    <li>
-      <div class="step-t">Open Claude Desktop and go to <span class="pill">Settings</span></div>
-      <div class="step-d">Click your name or the gear icon to open Settings.</div>
-    </li>
-    <li>
-      <div class="step-t">Open the <span class="pill">Plugins</span> section</div>
-    </li>
-    <li>
-      <div class="step-t"><span class="pill">Add</span> <span class="arrow">→</span> <span class="pill">Upload plugin</span></div>
-      <div class="step-d">Click Add, then choose “Upload plugin.”</div>
-    </li>
-    <li>
-      <div class="step-t">Drop in <span class="pill">paraloom-plugin.zip</span> and click <span class="pill">Upload</span></div>
-      <div class="step-d">Select the zip you downloaded. It installs as “ready to use.”</div>
-    </li>
-    <li>
-      <div class="step-t">Open the <span class="pill">Connectors</span> tab and click <span class="pill">Install</span> next to <b>Paraloom</b></div>
-      <div class="step-d">This adds the Paraloom connector. The button then changes to <b>Connect</b>.</div>
-    </li>
-    <li>
-      <div class="step-t">Click <span class="pill">Connect</span></div>
-      <div class="step-d">The Paraloom sign-in window opens.</div>
-    </li>
-    <li>
-      <div class="step-t">Log in to <b>Paraloom</b></div>
-      <div class="step-d">After you sign in, Claude Desktop shows <b>Connected</b>. You only do this once.</div>
-    </li>
-  </ol>
-
-  <div class="done">
-    <b>You’re connected.</b> Start a new chat and try one of the prompts on the next page. If a chat
-    you already had open doesn’t see the plugin, fully quit Claude (Cmd&#8209;Q) and reopen it.
+  <div class="sec setup">
+    <h2>Finish setup</h2>
+    <p class="lead">Open a new chat, paste this, and approve the steps:</p>
+    <div class="prompt">Run /project-setup to confirm Python 3 and Playwright are installed. Then save my DataForSEO credentials: if <span class="ph">~/.dataforseo.env</span> doesn’t already exist, create it with DATAFORSEO_LOGIN=<span class="ph">your-login</span> and DATAFORSEO_PASSWORD=<span class="ph">your-password</span> — don’t print the values back.</div>
   </div>
 
-  <!-- Page 2 -->
-  <section class="usage">
-    <h1>Using the plugin</h1>
-    <p class="lead">The plugin runs the Paraloom experiment workflow. Just type one of these in a
-      normal chat and swap in your own details. It handles the phases and pauses at the points that
-      need a human.</p>
-
-    <div class="card">
-      <span class="lbl">Kick off an experiment</span>
-      <div class="prompt">Run an experiment for <span class="ph">[credit union]</span> on <span class="ph">[topic]</span>.</div>
-      <p class="hint">Example: <i>“Run an experiment for Listerhill Credit Union on first-time
-        homebuyer mortgages.”</i> It researches real search demand, designs the experiment, drafts
-        the article, and runs the compliance/fact/accessibility reviews — then prepares the client
-        deliverable and stops for the FI sign-off.</p>
+  <div class="sec">
+    <h2>Using the plugin — try these</h2>
+    <div class="cards">
+      <div class="card">
+        <span class="lbl">Kick off an experiment</span>
+        <div class="prompt">Run an experiment for <span class="ph">[credit union]</span> on <span class="ph">[topic]</span>.</div>
+      </div>
+      <div class="card">
+        <span class="lbl">Send it to the customer</span>
+        <div class="prompt">Send the <span class="ph">[experiment]</span> deliverable to the client.</div>
+      </div>
+      <div class="card">
+        <span class="lbl">Check for revisions</span>
+        <div class="prompt">Check <span class="ph">[experiment]</span> for client responses and apply any revisions.</div>
+      </div>
     </div>
+  </div>
 
-    <div class="card">
-      <span class="lbl">Send it to the customer</span>
-      <div class="prompt">Send the <span class="ph">[experiment]</span> deliverable to the client.</div>
-      <p class="hint">It builds and publishes the deliverable and drafts the client email — then
-        <b>waits for your OK</b> before anything is actually sent.</p>
-    </div>
-
-    <div class="card">
-      <span class="lbl">Check for revisions</span>
-      <div class="prompt">Check <span class="ph">[experiment]</span> for client responses and apply any revisions.</div>
-      <p class="hint">It pulls the client’s answers and checklist confirmations, applies them the
-        right way, re-runs the reviews, and pushes an updated version. If nothing new came in, it
-        says so and stops.</p>
-    </div>
-
-    <footer>
-      <span>Paraloom plugin · install &amp; use guide</span>
-      <span>github.com/metrifi/paraloom-plugin</span>
-    </footer>
-  </section>
+  <footer>
+    <span>Paraloom plugin · install &amp; use guide</span>
+    <span>MetriFi · Paraloom</span>
+  </footer>
 
 </div>
 </body>
