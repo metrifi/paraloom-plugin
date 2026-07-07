@@ -111,7 +111,8 @@ Needed for keyword research and the hygiene check (Route B installs these for yo
    ```
    Ask Ryan for the shared credentials.
 5. **A real browser tool** for fact-checking (Playwright MCP or Claude-in-Chrome). Not bundled; if
-   absent, fact-checking falls back to manual verification.
+   absent, fact-checking falls back to manual verification. To add Playwright, use the paste-once
+   prompt in [`playwright-setup-prompt.md`](playwright-setup-prompt.md).
 
 ---
 
