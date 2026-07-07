@@ -3,6 +3,14 @@
 Source of truth for where the plugin is and what's next. Status: **M0 complete, M1 pending Ryan's
 distribution call.**
 
+> **Major direction (2026-07-06): server-side MCP migration.** The plan to shrink this plugin to
+> pure skills + MCP (no Python, no pip, no creds, no forced Playwright; install = one line +
+> sign-in) lives in the Paraloom repo on branch `geo-plugin-mcp-tooling` at
+> `docs/plans/plugin-mcp-migration.md`, and aligns with `metrifi-ai-plugins` Workstream G. It moves
+> DataForSEO, render/hygiene, NCUA/ADA scans, and manifest build/validate into GEO MCP tools,
+> deletes the compliance PDF, and makes fact-check browser-agnostic. M2–M4 below are largely
+> superseded by that plan; the plugin-side rewire is its G3 half.
+
 ## M0 — Build + verify the plugin locally ✅ (v0.1.0)
 - Marketplace + plugin manifests (validate clean).
 - 13 skills, bundled Paraloom MCP, Python tools, reference docs, workflow scripts.
