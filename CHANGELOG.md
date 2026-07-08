@@ -21,7 +21,7 @@ Fix the Claude Desktop "Upload plugin" route.
   connector step updated to match.
 - Added `playwright-setup-prompt.md` — a paste-once prompt to install the Playwright browser MCP
   (needed for fact-checking), with an INSTALL.md prerequisites pointer.
-- Slimmed the install guide to a single page: shorter header, two-column compact steps, removed the
+- Slimmed the install guide to a single page: title-only header, compact single-column steps, removed the
   "Before you start" and "You're connected" blocks, and dropped the per-prompt subtext. Added a
   "Finish setup" step (run `/project-setup`; save DataForSEO creds). The committed PDF uses a
   credential **placeholder**; a creds-filled copy is rendered to `dist/` (gitignored) for private
